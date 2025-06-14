@@ -1,6 +1,9 @@
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogTrigger, DialogClose } from "@radix-ui/react-dialog";
+import { PlusIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const ProjectDetails = () => {
   return (
@@ -28,6 +31,16 @@ const ProjectDetails = () => {
                     </Avatar>
                   ))}
                 </div>
+                <Dialog>
+                  <DialogTrigger>
+                    <DialogClose>
+                      <Button size="sm" variant="outline" className="ml-3" onClick={handleProjectInvitation}>
+                        <span>Invite</span>
+                        <PlusIcon className="w-3 h-3" />
+                      </Button>
+                    </DialogClose>
+                  </DialogTrigger>
+                </Dialog>
               </div>
               <div className="flex">
                 <p className="w-36">Category </p>
