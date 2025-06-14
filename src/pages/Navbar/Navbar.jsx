@@ -16,22 +16,23 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { PersonIcon } from "@radix-ui/react-icons";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const Navbar = () => {
   return (
     <div className="border-b py-4 px-5 flex items-center justify-between">
       <div className="flex items-center gap-2">
         <img
-          src="./project-manager-svgrepo-com.svg"
+          src="/project-manager-svgrepo-com.svg"
           alt="DevNest Logo"
-          className="cursor-pointer  h-4 w-auto"
+          className="cursor-pointer h-4 w-auto"
         />
         <p className="cursor-pointer mr-2 font-extrabold">DevNest</p>
         <Dialog>
           <DialogTrigger>
             <Button
               variant="ghost"
-              className="hover:bg-gray-100 border-[0.5px]"
+              className="hover:bg-gray-100 border-[0.5px] font-extrabold"
             >
               New Project
             </Button>
@@ -42,7 +43,9 @@ const Navbar = () => {
             <ProjectForm />
           </DialogContent>
         </Dialog>
-        <Button variant="ghost">Upgrade</Button>
+        <Button variant="ghost" className="font-extrabold">
+          Upgrade
+        </Button>
       </div>
       <div className="flex gap-3 items-center">
         <DropdownMenu>
