@@ -20,8 +20,13 @@ import { PersonIcon } from "@radix-ui/react-icons";
 const Navbar = () => {
   return (
     <div className="border-b py-4 px-5 flex items-center justify-between">
-      <div className="flex items-center gap-4">
-        <p className="cursor-pointer mr-6 font-extrabold">DevNest</p>
+      <div className="flex items-center gap-2">
+        <img
+          src="./project-manager-svgrepo-com.svg"
+          alt="DevNest Logo"
+          className="cursor-pointer  h-4 w-auto"
+        />
+        <p className="cursor-pointer mr-2 font-extrabold">DevNest</p>
         <Dialog>
           <DialogTrigger>
             <Button

@@ -12,14 +12,13 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import ProjectCard from "../Project/ProjectCard";
 
 export const tags = [
-  "All",
-  "ReactJs",
-  "NextJs",
-  "SpringBoot",
-  "NLP",
+  "ReactJS",
+  "NextJS",
+  "Spring Boot",
+  "Natural Language Processing",
+  "Speech Recognition",
   "MySQL",
   "MongoDB",
-  "Angular",
   "Python3",
   "Flask",
   "Django",
@@ -80,14 +79,14 @@ const ProjectList = () => {
                         <RadioGroupItem value="frontend" id="r4" />
                         <Label htmlFor="r4" className="font-extrabold">
                           {" "}
-                          Frontend
+                          DevOps
                         </Label>
                       </div>
                       <div className="flex items-center gap-2">
                         <RadioGroupItem value="backend" id="r5" />
                         <Label htmlFor="r5" className="font-extrabold">
                           {" "}
-                          Backend
+                          Security
                         </Label>
                       </div>
                     </RadioGroup>
