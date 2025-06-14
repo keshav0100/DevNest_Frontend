@@ -104,7 +104,7 @@ const ProjectList = () => {
         </section>
         <section className="projectSection w-full lg:w-[48rem]">
           <div className="flex gap-2 items-center pg-5 justify-between">
-            <div className="relative p-0 w-full">
+            <div className="relative w-full">
               <Input
                 onChange={handleSearchChange}
                 placeholder="Search Project"
@@ -113,7 +113,7 @@ const ProjectList = () => {
               <MagnifyingGlassIcon className="absolute top-3 left-3" />
             </div>
           </div>
-          <div>
+          <div className="mt-5">
             <div className="space-y-5 min-h-[74vh]">
               {keyword
                 ? [1, 1, 1].map((item) => <ProjectCard key={item} />)
