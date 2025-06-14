@@ -18,8 +18,17 @@ import {
 } from "@/components/ui/select";
 import { DialogClose } from "@/components/ui/dialog";
 import { tags } from "../ProjectList/ProjectList";
+import { X } from "lucide-react";
 
 const ProjectForm = () => {
+  const handleTagsChange = (newValue) => {
+    const currentTags = form.getValues("tags");
+    const updatedTags = currentTags.includes(newValue)
+      ? currentTags.filter((tag) => tag !== newValue)
+      : [...currentTags, newValue];
+    form.setValue("tags", updatedTags);
+  };
+
   const form = useForm({
     defaultValues: {
       name: "",
@@ -105,24 +114,38 @@ const ProjectForm = () => {
             name="tags"
             render={({ field }) => (
               <FormItem>
-                <Select
-                  onValueChange={(value) => {
-                    field.onChange(value);
-                  }}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a tag" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {tags.map((item) => (
-                      <SelectItem key={item} value={item}>
-                        {item}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <FormControl>
+                  <Select
+                    onValueChange={(value) => {
+                      handleTagsChange(value);
+                    }}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a tag" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {tags.map((item) => (
+                        <SelectItem key={item} value={item}>
+                          {item}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <div className="flex gap-1 flex-wrap">
+                  {field.value.map((item) => (
+                    <div
+                      key={item}
+                      onClick={() => handleTagsChange(item)}
+                      className="cursor-pointer flex rounded-full items-center border gap-2 px-4 py-1"
+                    >
+                      <span className="text-sm">{item}</span>
+                      <X className="h-3 w-3" />
+                    </div>
+                  ))}
+                </div>
                 <FormMessage />
               </FormItem>
             )}
