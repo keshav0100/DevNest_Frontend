@@ -1,18 +1,14 @@
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Home from './pages/Home/Home'
+import "./App.css";
+import Home from "./pages/Home/Home";
+import Navbar from "./pages/Navbar/Navbar";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-     <Home/>
+      <Navbar />
+      <Home />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

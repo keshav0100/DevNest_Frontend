@@ -17,10 +17,10 @@ const ProjectCard = () => {
           <div className="flex justify-between">
             <div className="flex items-center gap-5">
               <h1 className="cursor-pointer font-bold text-lg">
-                Create Commerce Project
+                Create NLP Project
               </h1>
               <DotFilledIcon />
-              <p className="text-sm text-gray-400">Full Stack Project</p>
+              <p className="text-sm text-gray-400">AI Based Project</p>
             </div>
             <div>
               <DropdownMenu>
