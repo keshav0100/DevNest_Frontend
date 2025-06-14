@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { MixerHorizontalIcon } from "@radix-ui/react-icons";
+import {
+  MagnifyingGlassIcon,
+  MixerHorizontalIcon,
+} from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import ProjectCard from "../Project/ProjectCard";
 
 const tags = [
   "All",
@@ -20,8 +25,12 @@ const tags = [
   "Django",
 ];
 const ProjectList = () => {
+  const [keyword, setKeyword] = useState("");
   const handleFilterChange = (section, value) => {
     console.log("value", value, section);
+  };
+  const handleSearchChange = (e) => {
+    setKeyword(e.target.value);
   };
   return (
     <>
@@ -93,7 +102,25 @@ const ProjectList = () => {
             </CardContent>
           </Card>
         </section>
-        <section className="projectSection w-full lg:w-[48rem]"></section>
+        <section className="projectSection w-full lg:w-[48rem]">
+          <div className="flex gap-2 items-center pg-5 justify-between">
+            <div className="relative p-0 w-full">
+              <Input
+                onChange={handleSearchChange}
+                placeholder="Search Project"
+                className="40% px-9"
+              />
+              <MagnifyingGlassIcon className="absolute top-3 left-3" />
+            </div>
+          </div>
+          <div>
+            <div className="space-y-5 min-h-[74vh]">
+              {keyword
+                ? [1, 1, 1].map((item) => <ProjectCard key={item} />)
+                : [1, 1, 1, 1, 1].map((item) => <ProjectCard key={item} />)}
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );
