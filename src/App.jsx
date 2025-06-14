@@ -7,6 +7,10 @@ function App() {
     <>
       <Navbar />
       <Home />
+      {/* <Routes> */}
+        {/* <Route path="/" element={<Home/>}/>
+        <Route path="/navbar" element={<Home/>}/> */}
+      {/* </Routes> */}
     </>
   );
 }

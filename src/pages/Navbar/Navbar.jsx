@@ -24,7 +24,12 @@ const Navbar = () => {
         <p className="cursor-pointer mr-6">DevNest</p>
         <Dialog>
           <DialogTrigger>
-            <Button variant="ghost">New Project</Button>
+            <Button
+              variant="ghost"
+              className="hover:bg-gray-100 border-[0.5px]"
+            >
+              New Project
+            </Button>
           </DialogTrigger>
 
           <DialogContent>
