@@ -57,23 +57,38 @@ const ProjectList = () => {
                     >
                       <div className="flex items-center gap-2">
                         <RadioGroupItem value="all" id="r1" />
-                        <Label htmlFor="r1"> All</Label>
+                        <Label htmlFor="r1" className="font-extrabold">
+                          {" "}
+                          All
+                        </Label>
                       </div>
                       <div className="flex items-center gap-2">
                         <RadioGroupItem value="ai" id="r2" />
-                        <Label htmlFor="r2"> Artifical Intelligence</Label>
+                        <Label htmlFor="r2" className="font-extrabold">
+                          {" "}
+                          Artifical Intelligence
+                        </Label>
                       </div>
                       <div className="flex items-center gap-2">
                         <RadioGroupItem value="fullstack" id="r3" />
-                        <Label htmlFor="r3"> Full Stack</Label>
+                        <Label htmlFor="r3" className="font-extrabold">
+                          {" "}
+                          Full Stack
+                        </Label>
                       </div>
                       <div className="flex items-center gap-2">
                         <RadioGroupItem value="frontend" id="r4" />
-                        <Label htmlFor="r4"> Frontend</Label>
+                        <Label htmlFor="r4" className="font-extrabold">
+                          {" "}
+                          Frontend
+                        </Label>
                       </div>
                       <div className="flex items-center gap-2">
                         <RadioGroupItem value="backend" id="r5" />
-                        <Label htmlFor="r5"> Backend</Label>
+                        <Label htmlFor="r5" className="font-extrabold">
+                          {" "}
+                          Backend
+                        </Label>
                       </div>
                     </RadioGroup>
                   </div>
@@ -92,7 +107,12 @@ const ProjectList = () => {
                       {tags.map((item) => (
                         <div key={item} className="flex items-center gap-2">
                           <RadioGroupItem value={item} id={`r-${item}`} />
-                          <Label htmlFor={`r-${item}`}>{item}</Label>
+                          <Label
+                            htmlFor={`r-${item}`}
+                            className="font-extrabold"
+                          >
+                            {item}
+                          </Label>
                         </div>
                       ))}
                     </RadioGroup>
