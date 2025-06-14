@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { DialogClose } from "@/components/ui/dialog";
+import { tags } from "../ProjectList/ProjectList";
 
 const ProjectForm = () => {
   const form = useForm({
@@ -76,19 +77,50 @@ const ProjectForm = () => {
             render={({ field }) => (
               <FormItem>
                 <Select
-                  onValueChange={field.onChange}
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                  }}
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="border w-full border-gray-700 py-5 px-5">
+                    <SelectTrigger>
                       <SelectValue placeholder="Select a category" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="web">Web Development</SelectItem>
-                    <SelectItem value="mobile">Mobile Development</SelectItem>
-                    <SelectItem value="desktop">Desktop Development</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
+                    <SelectItem value="ai">Artifical Intelligence</SelectItem>
+                    <SelectItem value="full">
+                      Full Stack Developement
+                    </SelectItem>
+                    <SelectItem value="backend">Backend</SelectItem>
+                    <SelectItem value="frontend">Frontend</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="tags"
+            render={({ field }) => (
+              <FormItem>
+                <Select
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                  }}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a tag" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {tags.map((item) => (
+                      <SelectItem key={item} value={item}>
+                        {item}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -104,7 +136,7 @@ const ProjectForm = () => {
             </div>
           ) : (
             <DialogClose asChild>
-              <Button type="submit" className="w-full my-5">
+              <Button type="submit" className="w-full my-5 font-bold">
                 Create Project
               </Button>
             </DialogClose>

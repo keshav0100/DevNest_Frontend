@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import ProjectCard from "../Project/ProjectCard";
 
-const tags = [
+export const tags = [
   "All",
   "ReactJs",
   "NextJs",
