@@ -1,9 +1,17 @@
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogTrigger, DialogClose } from "@radix-ui/react-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
 import { PlusIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import InviteUserForm from "./InviteUserForm";
 
 const ProjectDetails = () => {
   const handleProjectInvitation = () => {};
@@ -17,7 +25,7 @@ const ProjectDetails = () => {
               Create NLP using Transformers
             </h1>
             <div className="space-y-5 pb-10">
-              <p className="w-full md:max-w-lg lg:max-w-xl text-bold">
+              <p className="w-full md:max-w-lg lg:max-w-xl text-bold text-sm">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </p>
               <div className="flex">
@@ -47,6 +55,12 @@ const ProjectDetails = () => {
                       </Button>
                     </DialogClose>
                   </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Invite User</DialogTitle>
+                    </DialogHeader>
+                    <InviteUserForm />
+                  </DialogContent>
                 </Dialog>
               </div>
               <div className="flex">
