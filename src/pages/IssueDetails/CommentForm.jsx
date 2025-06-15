@@ -28,13 +28,13 @@ const CommentForm = ({issueId}) => {
   return (
 
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex items-end gap-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex items-end gap-2 text-gray-900">
         <FormField
           control={form.control}
-          name="email"
+          name="comment"
           render={({ field }) => (
             <FormItem >
-                <div className="flex gap-2">
+                <div className="flex gap-2 text-gray-800">
                     <div>
                     <Avatar>
                         <AvatarFallback>
@@ -46,7 +46,6 @@ const CommentForm = ({issueId}) => {
                 <Input placeholder="Add comments here" {...field} />
               </FormControl>
                 </div>
-                
               <FormMessage />
             </FormItem>
           )}
@@ -59,5 +58,4 @@ const CommentForm = ({issueId}) => {
   )
 }
 
-export default CommentForm
-CommentForm
+export default CommentForm;

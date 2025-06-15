@@ -12,7 +12,6 @@ const CommentCard = () => {
     <p>Keshav Bansal</p>
     <p>How much work is left</p>
 </div>
-
       </div>
       <Button className="rounded-full" variant="ghost" size="icon">
         <TrashIcon/>

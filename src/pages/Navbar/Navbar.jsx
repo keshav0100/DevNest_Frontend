@@ -52,7 +52,7 @@ const Navbar = () => {
             <ProjectForm />
           </DialogContent>
         </Dialog>
-        <Button variant="ghost" className="font-extrabold">
+        <Button variant="ghost" className="font-extrabold" onClick={()=>navigate("/upgrade_plan")}>
           Upgrade
         </Button>
       </div>
