@@ -43,7 +43,7 @@ const CommentForm = ({issueId}) => {
                     </Avatar>
                 </div>
               <FormControl>
-                <Input placeholder="Add comments here" {...field} />
+                <Input placeholder="Add comments here" {...field} className="font-extrabold"/>
               </FormControl>
                 </div>
               <FormMessage />

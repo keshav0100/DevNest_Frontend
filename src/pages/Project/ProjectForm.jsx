@@ -55,8 +55,8 @@ const ProjectForm = () => {
                   <Input
                     {...field}
                     type="text"
-                    className="border w-full border-gray-700 py-5 px-5"
-                    placeholder="Project Name..."
+                    className="border w-full border-gray-900 py-5 px-5 font-extrabold"
+                    placeholder="Project Name"
                   />
                 </FormControl>
                 <FormMessage />
@@ -72,7 +72,7 @@ const ProjectForm = () => {
                   <Input
                     {...field}
                     type="text"
-                    className="border w-full border-gray-700 py-5 px-5"
+                    className="border w-full border-gray-800 py-5 px-5 font-extrabold"
                     placeholder="Project Description..."
                   />
                 </FormControl>

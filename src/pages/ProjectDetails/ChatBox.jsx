@@ -15,7 +15,7 @@ const ChatBox = () => {
     setMessage(e.target.value);
   };
   return (
-    <div className="bg-blue-200">
+    <div>
       <div className="border rounded-lg">
         <h1 className="border-b p-5">Chat Box</h1>
         <ScrollArea className="h-[32rem] w-full p-5 flex gap-3 flex-col">
@@ -49,7 +49,7 @@ const ChatBox = () => {
         <div className="relative p-0">
           <Input
             placeholder="Type message"
-            className="py-7 border-t outline-none focus:outline-none focus:ring-0 rounded-none border-b-0 border-x-0"
+            className="py-7 border-t outline-none focus:outline-none focus:ring-0 rounded-none border-b-0 border-x-0 font-extrabold"
             value={message}
             onChange={handleMessageChange}
           />
