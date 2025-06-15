@@ -12,6 +12,12 @@ import { useNavigate } from "react-router-dom";
 
 const ProjectCard = () => {
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    console.log("Navigating to project details");
+    navigate("/project/3");
+  };
+
   return (
     <Card className="p-5 w-full lg:max-w-3xl">
       <div className="space-y-5">
@@ -19,8 +25,8 @@ const ProjectCard = () => {
           <div className="flex justify-between">
             <div className="flex items-center gap-5">
               <h1
-                onClick={() => navigate("/project/3")}
-                className="cursor-pointer font-bold text-lg"
+                onClick={handleClick}
+                className="cursor-pointer font-extrabold text-lg"
               >
                 Create NLP Project
               </h1>
@@ -47,7 +53,7 @@ const ProjectCard = () => {
         </div>
         <div className="flex flex-wrap gap-2 items-center">
           {[1, 1, 1, 1].map((item, index) => (
-            <Badge key={index} variant="outline">
+            <Badge key={index} variant="outline" className="font-extrabold">
               {"AI"}
             </Badge>
           ))}

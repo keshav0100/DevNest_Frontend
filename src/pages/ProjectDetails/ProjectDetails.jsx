@@ -6,6 +6,8 @@ import { PlusIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ProjectDetails = () => {
+  const handleProjectInvitation = () => {};
+
   return (
     <div className="mt-5 lg:px-10">
       <div className="lg:flex gap-5 justify-between pb-4">
@@ -34,7 +36,12 @@ const ProjectDetails = () => {
                 <Dialog>
                   <DialogTrigger>
                     <DialogClose>
-                      <Button size="sm" variant="outline" className="ml-3" onClick={handleProjectInvitation}>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="ml-3"
+                        onClick={handleProjectInvitation}
+                      >
                         <span>Invite</span>
                         <PlusIcon className="w-3 h-3" />
                       </Button>
