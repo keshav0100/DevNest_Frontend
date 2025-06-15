@@ -46,7 +46,7 @@ const IssueList = ({ title, status }) => {
           <DialogHeader>
             <DialogTitle>Create New Issue</DialogTitle>
           </DialogHeader>
-          <IssueForm/>
+          <IssueForm />
         </DialogContent>
       </Dialog>
     </div>

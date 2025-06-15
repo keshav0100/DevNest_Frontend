@@ -8,6 +8,7 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { DotsVerticalIcon, PersonIcon } from "@radix-ui/react-icons";
+import UserList from "./UserList";
 
 const IssueCard = () => {
   return (
@@ -32,7 +33,7 @@ const IssueCard = () => {
           </DropdownMenu>
         </div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="py-0">
         <div className="flex items-center justify-between">
           <p className="text-sm text-muted-foreground">FBP-{1}</p>
           <DropdownMenu>
@@ -50,8 +51,7 @@ const IssueCard = () => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem>View Profile</DropdownMenuItem>
-              <DropdownMenuItem>Assign to me</DropdownMenuItem>
+              <UserList/>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
