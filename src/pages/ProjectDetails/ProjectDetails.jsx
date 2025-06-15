@@ -24,19 +24,19 @@ const ProjectDetails = () => {
         <div className="lg:flex gap-5 justify-between pb-4">
           <ScrollArea className="h-screen lg:w-[69%] pr-2">
             <div className="text-gray-700 pb-10 w-full">
-              <h1 className="text-lg font-bold pb-5">
+              <h1 className="text-lg font-extrabold pb-5">
                 Create NLP using Transformers
               </h1>
-              <div className="space-y-5 pb-10 text-sm">
-                <p className="w-full md:max-w-lg lg:max-w-xl text-bold text-sm">
+              <div className="space-y-5 pb-10 text-base">
+                <p className="w-full md:max-w-lg lg:max-w-xl text-base font-extrabold">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
                 <div className="flex">
-                  <p className="w-36">Project Lead : </p>
-                  <p> Keshav</p>
+                  <p className="w-36 font-extrabold">Project Lead : </p>
+                  <p className="font-extrabold"> Keshav</p>
                 </div>
                 <div className="flex">
-                  <p className="w-36">Members :</p>
+                  <p className="w-36 font-extrabold">Members :</p>
                   <div className="flex items-center gap-2">
                     {[1, 1, 1, 1].map((item) => (
                       <Avatar className="cursor-pointer" key={item}>
@@ -50,7 +50,7 @@ const ProjectDetails = () => {
                         <Button
                           size="sm"
                           variant="outline"
-                          className="ml-3"
+                          className="ml-3 font-extrabold"
                           onClick={handleProjectInvitation}
                         >
                           <span>Invite</span>
@@ -67,16 +67,18 @@ const ProjectDetails = () => {
                   </Dialog>
                 </div>
                 <div className="flex">
-                  <p className="w-36">Category </p>
-                  <p> Artificial Intelligence</p>
+                  <p className="w-36 font-extrabold">Category </p>
+                  <p className="font-extrabold"> Artificial Intelligence</p>
                 </div>
                 <div className="flex">
-                  <p className="w-36">Status : </p>
-                  <Badge> In Progress</Badge>
+                  <p className="w-36 font-extrabold">Status : </p>
+                  <Badge className="font-extrabold"> In Progress</Badge>
                 </div>
               </div>
               <section>
-                <p className="space-y-5 pb-10 text-sm">Tasks</p>
+                <p className="space-y-5 pb-10 text-base font-extrabold">
+                  Tasks
+                </p>
                 <div className="lg:flex md:flex gap-3 justify-between py-5">
                   <IssueList status="pending" title="Todo List" />
                   <IssueList status="in_progress" title="In Progress" />
