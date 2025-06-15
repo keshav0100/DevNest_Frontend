@@ -19,19 +19,21 @@ const ProjectCard = () => {
   };
 
   return (
-    <Card className="p-5 w-full lg:max-w-3xl">
+    <Card className="w-full md:w-[300px] lg:w-[310px]">
       <div className="space-y-5">
         <div className="space-y-2">
           <div className="flex justify-between">
             <div className="flex items-center gap-5">
               <h1
                 onClick={handleClick}
-                className="cursor-pointer font-extrabold text-lg"
+                className="cursor-pointer font-extrabold text-sm"
               >
                 Create NLP Project
               </h1>
               <DotFilledIcon />
-              <p className="text-sm text-gray-400">AI Based Project</p>
+              <p className="text-xs text-gray-400 font-extrabold">
+                AI Based Project
+              </p>
             </div>
             <div>
               <DropdownMenu>
@@ -41,19 +43,27 @@ const ProjectCard = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuItem>Update</DropdownMenuItem>
-                  <DropdownMenuItem>Delete</DropdownMenuItem>
+                  <DropdownMenuItem className="font-extrabold text-sm">
+                    Update
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="font-extrabold text-sm">
+                    Delete
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
           </div>
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-500 text-xs font-extrabold">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit
           </p>
         </div>
         <div className="flex flex-wrap gap-2 items-center">
           {[1, 1, 1, 1].map((item, index) => (
-            <Badge key={index} variant="outline" className="font-extrabold">
+            <Badge
+              key={index}
+              variant="outline"
+              className="font-extrabold text-xs"
+            >
               {"AI"}
             </Badge>
           ))}
