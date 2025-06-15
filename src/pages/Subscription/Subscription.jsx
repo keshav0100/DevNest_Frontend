@@ -22,6 +22,8 @@ const monthlyPlan=[
     "Advanced Reporting",
     "Priority Support",
     "Customization Options",
+    "Customer Support",
+    "Live Monitoring"
 ]
 
 const Subscription = () => {
@@ -33,7 +35,7 @@ const Subscription = () => {
       <div className="flex flex-col lg:flex-row justify-center items-center gap-9">
         <SubscriptionCard data={{planName:"Free",features:freePlan,planType:"FREE",price:0,buttonName:true?"Current Plan":"Get Started"}}/>
         <SubscriptionCard data={{planName:"Monthly Paid Plan",features:monthlyPlan,planType:"MONTHLY",price:899,buttonName:true?"Current Plan":"Get Started"}}/>
-        <SubscriptionCard data={{planName:"Annual Paid Plan",features:annualPlan,planType:"ANNUAL",price:7199,buttonName:true?"Current Plan":"Get Started"}}/>
+        <SubscriptionCard data={{planName:"Annual Paid Plan",features:annualPlan,planType:"ANNUALLY",price:7199,buttonName:true?"Current Plan":"Get Started"}}/>
       </div>
     </div>
   )

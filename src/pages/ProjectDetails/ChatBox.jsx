@@ -15,7 +15,7 @@ const ChatBox = () => {
     setMessage(e.target.value);
   };
   return (
-    <div className="sticky">
+    <div className="bg-blue-200">
       <div className="border rounded-lg">
         <h1 className="border-b p-5">Chat Box</h1>
         <ScrollArea className="h-[32rem] w-full p-5 flex gap-3 flex-col">

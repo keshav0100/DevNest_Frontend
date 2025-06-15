@@ -20,10 +20,10 @@ const ProjectDetails = () => {
 
   return (
     <>
-      <div className="mt-5 lg:px-10">
-        <div className="lg:flex gap-5 justify-between pb-4">
-          <ScrollArea className="h-screen lg:w-[69%] pr-2">
-            <div className="text-gray-700 pb-10 w-full">
+      <div className="min-h-screen bg-white p-5 lg:px-10 border-4 border-red-500">
+        <div className="lg:flex gap-5 justify-between pb-4 bg-white rounded-md border-4 border-green-500">
+          <ScrollArea className="max-h-screen lg:w-[69%] pr-2 bg-white rounded-md transform translate-z-0 z-10 border-4 border-blue-500">
+            <div className="text-gray-700 pb-10 w-full bg-white border-4 border-purple-500">
               <h1 className="text-lg font-extrabold pb-5">
                 Create NLP using Transformers
               </h1>
@@ -87,7 +87,7 @@ const ProjectDetails = () => {
               </section>
             </div>
           </ScrollArea>
-          <div className="lg:w-[30%] rounded-md sticky right-5 top-10">
+          <div className="lg:w-[30%] rounded-md sticky right-5 top-10 bg-white shadow-lg border-4 border-yellow-500">
             <ChatBox />
           </div>
         </div>
