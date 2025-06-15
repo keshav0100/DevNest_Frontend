@@ -26,7 +26,7 @@ const ProjectCard = () => {
             <div className="flex items-center gap-5">
               <h1
                 onClick={handleClick}
-                className="cursor-pointer font-bold text-lg"
+                className="cursor-pointer font-black text-lg"
               >
                 Create NLP Project
               </h1>
@@ -57,13 +57,12 @@ const ProjectCard = () => {
         </div>
         <div className="flex flex-wrap gap-2 items-center">
           {[1, 1, 1, 1].map((item, index) => (
-            <Badge
-              key={index}
-              variant="outline"
-              className="font-medium text-base"
+            <div
+              key={item}
+              className="py-1 px-2 group hover:bg-slate-100 cursor-pointer flex items-center rounded-md border border-gray-200"
             >
-              {"AI"}
-            </Badge>
+              <span className="text-xs font-medium">{"AI"}</span>
+            </div>
           ))}
         </div>
       </div>
