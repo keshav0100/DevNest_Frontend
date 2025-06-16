@@ -19,8 +19,11 @@ import {
 import { DialogClose } from "@/components/ui/dialog";
 import { tags } from "../ProjectList/ProjectList";
 import { X } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { createProjects } from "@/Redux/Project/Action";
 
 const ProjectForm = () => {
+  const dispatch=useDispatch();
   const handleTagsChange = (newValue) => {
     const currentTags = form.getValues("tags");
     const updatedTags = currentTags.includes(newValue)
@@ -39,6 +42,7 @@ const ProjectForm = () => {
   });
 
   const onSubmit = (data) => {
+    dispatch(createProjects(data))
     console.log("Create Project Data", data);
   };
 
@@ -150,6 +154,7 @@ const ProjectForm = () => {
               </FormItem>
             )}
           />
+          <DialogClose>
           {false ? (
             <div className="text-center text-red-500">
               <p>
@@ -164,6 +169,7 @@ const ProjectForm = () => {
               </Button>
             </DialogClose>
           )}
+          </DialogClose>
         </form>
       </Form>
     </div>

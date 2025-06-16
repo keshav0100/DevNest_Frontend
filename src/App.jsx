@@ -7,19 +7,18 @@ import { Route, Routes } from "react-router-dom";
 import Subscription from "./pages/Subscription/Subscription";
 import Auth from "./pages/Auth/Auth";
 import { useDispatch,useSelector } from "react-redux";
-import {store} from "./Redux/Store"
+// import {store} from "./Redux/Store"
 import { useEffect } from "react";
 import { getUser } from "./Redux/Auth/Action";
+import { fetchProjects } from "./Redux/Project/Action";
 
 function App() {
   const dispatch=useDispatch();
   const {auth}=useSelector(store=>store);
   
   useEffect(()=>{
-    const jwt = localStorage.getItem("jwt");
-    if(jwt) {
       dispatch(getUser())
-    }
+      dispatch(fetchProjects({}))
   },[auth.jwt])
 
   return (

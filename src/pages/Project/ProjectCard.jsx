@@ -10,12 +10,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 
-const ProjectCard = () => {
+const ProjectCard = ({ project }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
     console.log("Navigating to project details");
-    navigate("/project/3");
+    navigate(`/project/${project.id}`);
   };
 
   return (
@@ -28,10 +28,10 @@ const ProjectCard = () => {
                 onClick={handleClick}
                 className="cursor-pointer font-black text-lg"
               >
-                Create NLP Project
+                {project.name}
               </h1>
               <DotFilledIcon />
-              <p className="text-base text-gray-500">AI Based Project</p>
+              <p className="text-base text-gray-500">{project.category}</p>
             </div>
             <div>
               <DropdownMenu>
@@ -52,16 +52,16 @@ const ProjectCard = () => {
             </div>
           </div>
           <p className="text-gray-600 text-base">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit
+            {project.description}
           </p>
         </div>
         <div className="flex flex-wrap gap-2 items-center">
-          {[1, 1, 1, 1].map((item, index) => (
+          {project.tags && project.tags.map((tag, index) => (
             <div
-              key={item}
+              key={index}
               className="py-1 px-2 group hover:bg-slate-100 cursor-pointer flex items-center rounded-md border border-gray-200"
             >
-              <span className="text-xs text-extrabold">{"AI"}</span>
+              <span className="text-xs text-extrabold">{tag}</span>
             </div>
           ))}
         </div>

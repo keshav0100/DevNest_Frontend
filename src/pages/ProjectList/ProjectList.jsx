@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import ProjectCard from "../Project/ProjectCard";
+import { useSelector } from "react-redux";
 
 export const tags = [
   "ReactJS",
@@ -23,14 +24,21 @@ export const tags = [
   "Flask",
   "Django",
 ];
+
 const ProjectList = () => {
   const [keyword, setKeyword] = useState("");
+  const { project } = useSelector(store => store);
+  
   const handleFilterChange = (section, value) => {
     console.log("value", value, section);
   };
+
   const handleSearchChange = (e) => {
     setKeyword(e.target.value);
   };
+
+  console.log("Project Store", project);
+
   return (
     <>
       <div className="relative px-5 lg:px-0 lg:flex gap-5 justify-center py-8">
@@ -136,7 +144,9 @@ const ProjectList = () => {
             <div className="flex flex-col space-y-5 min-h-[74vh]">
               {keyword
                 ? [1, 1, 1].map((item) => <ProjectCard key={item} />)
-                : [1, 1, 1, 1, 1].map((item) => <ProjectCard key={item} />)}
+                : project.projects?.filter(project => project).map((project) => (
+                    <ProjectCard key={project.id} project={project} />
+                  ))}
             </div>
           </div>
         </section>
