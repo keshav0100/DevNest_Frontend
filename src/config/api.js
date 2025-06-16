@@ -2,11 +2,25 @@ import axios from "axios";
 
 export const API_BASE_URL="http://localhost:5454";
 
-const api=axios.create({baseURL:API_BASE_URL})
+const api=axios.create({
+    baseURL: API_BASE_URL,
+    headers: {
+        "Content-Type": "application/json"
+    }
+});
 
-const jwt=localStorage.getItem("jwt");
-
-api.defaults.headers.common["Authorization"]=`Bearer ${jwt}`
-api.defaults.headers.post["Content-Type"]="application/json"
+// Add a request interceptor to add the JWT token to every request
+api.interceptors.request.use(
+    (config) => {
+        const jwt = localStorage.getItem("jwt");
+        if (jwt) {
+            config.headers.Authorization = `Bearer ${jwt.trim()}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
 
 export default api;

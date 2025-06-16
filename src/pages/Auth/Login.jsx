@@ -8,8 +8,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { login } from "@/Redux/Auth/Action";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import * as z from "zod";
 
 const formSchema = z.object({
@@ -18,6 +20,7 @@ const formSchema = z.object({
 });
 
 const Login = () => {
+  const dispatch=useDispatch();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -27,6 +30,7 @@ const Login = () => {
   });
 
   function onSubmit(data) {
+    dispatch(login(data)) 
     console.log("Login data:", data);
     // TODO: Add API call for login
   }

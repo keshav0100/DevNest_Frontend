@@ -18,8 +18,16 @@ import {
 import { PersonIcon } from "@radix-ui/react-icons";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "@/Redux/Auth/Action";
+// import { store } from "@/Redux/Store";
 
 const Navbar = () => {
+  const dispatch=useDispatch();
+  const handleLogout=()=>{
+    dispatch(logout())
+  }
+  const {auth}=useSelector(store=>store);
   const navigate = useNavigate();
 
   return (
@@ -64,10 +72,10 @@ const Navbar = () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <p>Keshav </p>
+        <p>{auth.user?.fullName}</p>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import { API_BASE_URL } from "@/config/api";
 import { GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionType"
 import axios from "axios";
-import { type } from "os";
+
 
 export const register=userData=>async(dispatch)=>{
     dispatch({type:REGISTER_REQUEST})
@@ -11,7 +11,7 @@ export const register=userData=>async(dispatch)=>{
         {
             localStorage.setItem("jwt",data.jwt)
             dispatch({type:REGISTER_SUCCESS,payload:data})
-
+            dispatch(getUser())  
         }
         console.log("Register Success",data);
     } catch (error) {
@@ -22,7 +22,7 @@ export const register=userData=>async(dispatch)=>{
 export const login=userData=>async(dispatch)=>{
     dispatch({type:LOGIN_REQUEST})
     try {
-        const {data}=await axios.post(`${API_BASE_URL}/auth/signin`,userData);
+        const {data}=await axios.post(`${API_BASE_URL}/auth/signing`,userData);
         if(data.jwt)
         {
             localStorage.setItem("jwt",data.jwt)
@@ -39,15 +39,11 @@ export const getUser=()=>async(dispatch)=>{
     try {
         const {data}=await axios.get(`${API_BASE_URL}/api/users/profile`,{
             headers:{
-                "Authorization":`Bearer${localStorage.getItem("jwt")}`
+                "Authorization":`Bearer ${localStorage.getItem("jwt")}`
             },
         });
-        if(data.jwt)
-        {
-            localStorage.setItem("jwt",data.jwt)
             dispatch({type:GET_USER_SUCCESS,payload:data})
-        }
-        console.log("Login Success",data);
+        console.log("User Success",data);
     } catch (error) {
         console.log(error);
     }

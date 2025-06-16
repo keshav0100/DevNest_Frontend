@@ -11,6 +11,8 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod"; 
+import { useDispatch } from "react-redux";
+import { register } from "@/Redux/Auth/Action";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -19,6 +21,7 @@ const formSchema = z.object({
 });
 
 const Signup = () => {
+  const dispatch=useDispatch();
      const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -29,6 +32,7 @@ const Signup = () => {
   });
 
   function onSubmit(data) {
+    dispatch(register(data));
     console.log("Create project data", data);
   }
   return (
