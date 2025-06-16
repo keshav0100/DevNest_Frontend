@@ -11,7 +11,7 @@ function App() {
   return (
     <>
     {
-    true ?<div>
+    false ?<div>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

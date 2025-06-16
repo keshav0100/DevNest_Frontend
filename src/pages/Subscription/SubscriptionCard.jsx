@@ -10,7 +10,7 @@ const SubscriptionCard = ({data}) => {
         <span className="text-xl text-extrabold">₹ {data.price} / </span>
         <span className="text-md text-extrabold">{data.planType}</span>
       </p>
-      {data.planType=="ANNUALLY"&&<p className="text-red-500">30% off </p>}
+      {data.planType=="ANNUALLY"&&<p className="text-red-500">-30% off </p>}
       <div className="space-y-3">
         {data.features.map((item, index) => (
           <div key={index} className="flex items-center gap-2">

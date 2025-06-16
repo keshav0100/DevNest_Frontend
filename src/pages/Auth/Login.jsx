@@ -41,7 +41,6 @@ const Login = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-extrabold">Email</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your email" {...field} className="font-extrabold" />
                 </FormControl>
@@ -54,16 +53,15 @@ const Login = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-extrabold">Password</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="Enter your password" {...field} />
+                  <Input type="password" placeholder="Enter your password" className="font-extrabold" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
           <div className="flex justify-center">
-            <Button type="submit" className="px-4 items-center cursor-pointer">
+            <Button type="submit" className="w-full items-center cursor-pointer font-extrabold">
               Login
             </Button>
           </div>

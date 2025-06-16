@@ -46,7 +46,7 @@ const Signup = () => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Enter Full Name" {...field} />
+                <Input placeholder="Enter Full Name" {...field} className="font-extrabold"/>
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -58,9 +58,9 @@ const Signup = () => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Enter email" {...field} />
+                <Input placeholder="Enter your email" {...field} className="font-extrabold"/>
               </FormControl>
-              <FormMessage />
+              <FormMessage/>
             </FormItem>
           )}
         />
@@ -70,7 +70,7 @@ const Signup = () => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input type="password" placeholder="Enter Password" {...field} />
+                <Input type="password" placeholder="Enter password" {...field} className="font-extrabold"/>
               </FormControl>
               <FormMessage />
             </FormItem>
