@@ -143,7 +143,7 @@ const ProjectList = () => {
           <div className="mt-5">
             <div className="flex flex-col space-y-5 min-h-[74vh]">
               {keyword
-                ? [1, 1, 1].map((item) => <ProjectCard key={item} />)
+                ? item.tags.map((tag) => <ProjectCard key={tag} />)
                 : project.projects?.filter(project => project).map((project) => (
                     <ProjectCard key={project.id} project={project} />
                   ))}

@@ -102,11 +102,14 @@ const ProjectForm = () => {
                   </FormControl>
                   <SelectContent>
                     <SelectItem value="ai">Artifical Intelligence</SelectItem>
-                    <SelectItem value="full">
+                    <SelectItem value="fullstack">
                       Full Stack Developement
                     </SelectItem>
                     <SelectItem value="backend">Backend</SelectItem>
                     <SelectItem value="frontend">Frontend</SelectItem>
+                    <SelectItem value="devops">DevOps</SelectItem>
+                    <SelectItem value="nlp">NLP</SelectItem>
+                    <SelectItem value="speech">Speech Recognition</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />

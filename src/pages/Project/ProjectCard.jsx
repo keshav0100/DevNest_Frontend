@@ -9,13 +9,25 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deleteProject } from "@/Redux/Project/Action";
 
 const ProjectCard = ({ project }) => {
   const navigate = useNavigate();
-
+  const dispatch=useDispatch();
+  const handleDelete=()=>{
+    dispatch(deleteProject(project.id))
+  }
   const handleClick = () => {
     console.log("Navigating to project details");
     navigate(`/project/${project.id}`);
+  };
+
+  const formatCategory = (category) => {
+    if (category === 'full') {
+      return 'Full Stack';
+    }
+    return category.charAt(0).toUpperCase() + category.slice(1);
   };
 
   return (
@@ -31,7 +43,9 @@ const ProjectCard = ({ project }) => {
                 {project.name}
               </h1>
               <DotFilledIcon />
-              <p className="text-base text-gray-500">{project.category}</p>
+              <p className="text-base text-gray-500">
+                {formatCategory(project.category)}
+              </p>
             </div>
             <div>
               <DropdownMenu>
@@ -44,7 +58,7 @@ const ProjectCard = ({ project }) => {
                   <DropdownMenuItem className="text-extrabold text-base">
                     Update
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="text-extrabold text-base">
+                  <DropdownMenuItem className="text-extrabold text-base" onClick={handleDelete}>
                     Delete
                   </DropdownMenuItem>
                 </DropdownMenuContent>
