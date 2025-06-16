@@ -37,8 +37,11 @@ const Signup = () => {
   }
   return (
     <div className="space-y-5">
-      <h1 className="text-2xl font-bold text-center">
-        Register
+      <h1 className="text-xl font-extrabold text-center">
+        Keshav's DevNest
+      </h1>
+      <h1 className="text-3xl font-extrabold text-center">
+        Register Here
       </h1>
        <div className="space-y-5">
 
