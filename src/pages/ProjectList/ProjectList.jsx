@@ -127,7 +127,7 @@ const ProjectList = () => {
               <Input
                 onChange={handleSearchChange}
                 placeholder="Search Project"
-                className="w-full px-9 cursor-text"
+                className="w-full px-9 cursor-text font-extrabold"
               />
               <MagnifyingGlassIcon className="absolute top-3 left-3" />
             </div>

@@ -41,10 +41,10 @@ const ProjectCard = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuItem className="font-medium text-base">
+                  <DropdownMenuItem className="text-extrabold text-base">
                     Update
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="font-medium text-base">
+                  <DropdownMenuItem className="text-extrabold text-base">
                     Delete
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -61,7 +61,7 @@ const ProjectCard = () => {
               key={item}
               className="py-1 px-2 group hover:bg-slate-100 cursor-pointer flex items-center rounded-md border border-gray-200"
             >
-              <span className="text-xs font-medium">{"AI"}</span>
+              <span className="text-xs text-extrabold">{"AI"}</span>
             </div>
           ))}
         </div>

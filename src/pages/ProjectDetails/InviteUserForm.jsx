@@ -36,14 +36,14 @@ const InviteUserForm = () => {
             <FormItem>
               <FormLabel className="font-extrabold">Email</FormLabel>
               <FormControl>
-                <Input placeholder="Enter user email" {...field} />
+                <Input placeholder="Enter user email" {...field} className="font-extrabold"/>
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <div className="flex justify-center">
-          <Button type="submit" className="px-4 items-center cursor-pointer">
+          <Button type="submit" className="px-4 items-center cursor-pointer font-extrabold">
             Send Invitation
           </Button>
         </div>
