@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   MagnifyingGlassIcon,
@@ -10,9 +10,11 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import ProjectCard from "../Project/ProjectCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProjects, searchProjects } from "@/Redux/Project/Action";
 
 export const tags = [
+  "All",
   "ReactJS",
   "NextJS",
   "Spring Boot",
@@ -28,14 +30,26 @@ export const tags = [
 const ProjectList = () => {
   const [keyword, setKeyword] = useState("");
   const { project } = useSelector(store => store);
+  const dispatch=useDispatch();
   
-  const handleFilterChange = (section, value) => {
-    console.log("value", value, section);
+  const handleFilterCategory = (value) => {
+    if(value=='all'){
+      dispatch(fetchProjects({}))
+    }
+    dispatch(fetchProjects({category:value}))
+  };
+  const handleFilterTags = (value) => {
+if(value=='All'){
+      dispatch(fetchProjects({}))
+    }
+    dispatch(fetchProjects({tag:value}))
   };
 
   const handleSearchChange = (e) => {
     setKeyword(e.target.value);
+    dispatch(searchProjects(e.target.value))
   };
+
 
   console.log("Project Store", project);
 
@@ -59,7 +73,7 @@ const ProjectList = () => {
                       className="space-y-1 pt-2"
                       defaultValue="all"
                       onValueChange={(value) =>
-                        handleFilterChange("category", value)
+                        handleFilterCategory(value)
                       }
                     >
                       <div className="flex items-center gap-2">
@@ -84,31 +98,53 @@ const ProjectList = () => {
                         </Label>
                       </div>
                       <div className="flex items-center gap-2">
-                        <RadioGroupItem value="frontend" id="r4" />
+                        <RadioGroupItem value="nlp" id="r6" />
+                        <Label htmlFor="r6" className="font-extrabold">
+                          {" "}
+                          Natural Language Processing
+                        </Label>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <RadioGroupItem value="speech" id="r7" />
+                        <Label htmlFor="r7" className="font-extrabold">
+                          {" "}
+                          Speech Recognition
+                        </Label>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <RadioGroupItem value="frontend" id="r8" />
+                        <Label htmlFor="r8" className="font-extrabold">
+                          {" "}
+                          Frontend
+                        </Label>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <RadioGroupItem value="backend" id="r9" />
+                        <Label htmlFor="r9" className="font-extrabold">
+                          {" "}
+                          Backend
+                        </Label>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <RadioGroupItem value="devops" id="r4" />
                         <Label htmlFor="r4" className="font-extrabold">
                           {" "}
                           DevOps
                         </Label>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <RadioGroupItem value="backend" id="r5" />
-                        <Label htmlFor="r5" className="font-extrabold">
-                          {" "}
-                          Security
-                        </Label>
-                      </div>
+                      
                     </RadioGroup>
                   </div>
                 </div>
 
-                <div className="pt-9">
+                <div className="pt-6">
                   <h1 className="pb-3 text-gray-400 border-b">Tag</h1>
-                  <div className="pt-5">
+                  <div className="pt-3">
                     <RadioGroup
-                      className="space-y-2 pt-2"
+                      className="space-y-2 pt-1"
                       defaultValue="all"
                       onValueChange={(value) =>
-                        handleFilterChange("tag", value)
+                        handleFilterTags(value)
                       }
                     >
                       {tags.map((item) => (
@@ -143,9 +179,11 @@ const ProjectList = () => {
           <div className="mt-5">
             <div className="flex flex-col space-y-5 min-h-[74vh]">
               {keyword
-                ? item.tags.map((tag) => <ProjectCard key={tag} />)
-                : project.projects?.filter(project => project).map((project) => (
-                    <ProjectCard key={project.id} project={project} />
+                ? project.searchProjects?.map((item) => (
+                    <ProjectCard key={item.id} project={item} />
+                  ))
+                : project.projects?.map((item) => (
+                    <ProjectCard key={item.id} project={item} />
                   ))}
             </div>
           </div>

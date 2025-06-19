@@ -10,7 +10,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { deleteProject } from "@/Redux/Project/Action";
+import { deleteProject, fetchProjectById } from "@/Redux/Project/Action";
+import { useEffect } from "react";
 
 const ProjectCard = ({ project }) => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const ProjectCard = ({ project }) => {
   const handleDelete=()=>{
     dispatch(deleteProject(project.id))
   }
+  
   const handleClick = () => {
     console.log("Navigating to project details");
     navigate(`/project/${project.id}`);
@@ -37,7 +39,7 @@ const ProjectCard = ({ project }) => {
           <div className="flex justify-between">
             <div className="flex items-center gap-5">
               <h1
-                onClick={handleClick}
+                onClick={()=>navigate("/project/"+project.id)}
                 className="cursor-pointer font-black text-lg"
               >
                 {project.name}

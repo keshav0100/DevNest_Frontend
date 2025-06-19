@@ -37,7 +37,7 @@ const ProjectForm = () => {
       name: "",
       description: "",
       category: "",
-      tags: ["javascript", "react"],
+      tags: [],
     },
   });
 
@@ -166,8 +166,8 @@ const ProjectForm = () => {
               </p>
             </div>
           ) : (
-            <DialogClose asChild>
-              <Button type="submit" className="w-full my-5 font-bold">
+            <DialogClose >
+              <Button type="submit" className="font-extrabold w-full">
                 Create Project
               </Button>
             </DialogClose>

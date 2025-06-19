@@ -11,9 +11,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
+import { useDispatch } from "react-redux";
+import { createIssue } from "@/Redux/Issue/Action";
+import { useParams } from "react-router-dom";
 
 const IssueForm = () => {
+  const {id} = useParams();
+  const dispatch = useDispatch();
   const form = useForm({
     // resolver: zodResolver(formSchema),
     defaultValues: {
@@ -23,7 +27,16 @@ const IssueForm = () => {
   });
 
   function onSubmit(data) {
-    console.log("Create project data", data);
+    data.projectId = id;
+
+    dispatch(
+      createIssue({
+        title: data.issueName,
+        description: data.description,
+        projectId: id,
+      })
+    );
+    console.log("Create issue data", data);
   }
   return (
     <div>
@@ -35,7 +48,11 @@ const IssueForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Enter Issue Name" {...field} />
+                  <Input
+                    placeholder="Enter Issue Name"
+                    {...field}
+                    className="font-extrabold"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -47,7 +64,11 @@ const IssueForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Enter Description" {...field} />
+                  <Input
+                    placeholder="Enter Description"
+                    {...field}
+                    className="font-extrabold"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -55,7 +76,10 @@ const IssueForm = () => {
           />
 
           <div className="flex justify-center">
-            <Button type="submit" className="px-4 items-center cursor-pointer">
+            <Button
+              type="submit"
+              className="px-4 items-center cursor-pointer font-extrabold"
+            >
               Create Issue
             </Button>
           </div>

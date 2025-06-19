@@ -14,10 +14,19 @@ import { Button } from "@/components/ui/button";
 import InviteUserForm from "./InviteUserForm";
 import IssueList from "./IssueList";
 import ChatBox from "./ChatBox";
+import { useEffect } from "react";
+import { fetchProjectById } from "@/Redux/Project/Action";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const ProjectDetails = () => {
   const handleProjectInvitation = () => {};
-
+  const {id}=useParams();
+  const {project}=useSelector(store=>store)
+  const dispatch=useDispatch();
+useEffect(()=>{
+    dispatch(fetchProjectById(id))
+  },[id])
   return (
     <>
       <div className="min-h-screen bg-white p-5 lg:px-10">
@@ -25,22 +34,22 @@ const ProjectDetails = () => {
           <ScrollArea className="max-h-screen lg:w-[69%] pr-2 bg-white rounded-md transform translate-z-0 z-10">
             <div className="text-gray-700 pb-10 w-full bg-white">
               <h1 className="text-lg font-extrabold pb-5">
-                Create NLP using Transformers
+                {project.projectDetails?.name}
               </h1>
               <div className="space-y-5 pb-10 text-base">
                 <p className="w-full md:max-w-lg lg:max-w-xl text-base font-extrabold">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  {project.projectDetails?.description}
                 </p>
                 <div className="flex">
                   <p className="w-36 font-extrabold">Project Lead : </p>
-                  <p className="font-extrabold"> Keshav</p>
+                  <p className="font-extrabold">{project.projectDetails?.owner.fullName} </p>
                 </div>
                 <div className="flex">
                   <p className="w-36 font-extrabold">Members :</p>
                   <div className="flex items-center gap-2">
-                    {[1, 1, 1, 1].map((item) => (
-                      <Avatar className="cursor-pointer" key={item}>
-                        <AvatarFallback>K</AvatarFallback>
+                    {project.projectDetails?.team.map((member) => (
+                      <Avatar className="cursor-pointer" key={member.id}>
+                        <AvatarFallback>{member.fullName?.charAt(0) || 'N/A'}</AvatarFallback>
                       </Avatar>
                     ))}
                   </div>
@@ -50,7 +59,7 @@ const ProjectDetails = () => {
                         <Button
                           size="sm"
                           variant="outline"
-                          className="ml-3 font-extrabold"
+                          className=" gap-2 font-extrabold"f
                           onClick={handleProjectInvitation}
                         >
                           <span>Invite</span>
@@ -68,7 +77,7 @@ const ProjectDetails = () => {
                 </div>
                 <div className="flex">
                   <p className="w-36 font-extrabold">Category </p>
-                  <p className="font-extrabold"> Artificial Intelligence</p>
+                  <p className="font-extrabold">{project.projectDetails?.category} </p>
                 </div>
                 <div className="flex">
                   <p className="w-36 font-extrabold">Status : </p>
