@@ -3,17 +3,17 @@ import api from "@/config/api";
 
 export const fetchIssue = (id) => {
   return async (dispatch) => {
-    dispatch({ type: actionTypes.FETCH_ISSUE_REQUEST });
+    dispatch({ type: actionTypes.FETCH_ISSUES_REQUEST });
     try {
       const response = await api.get(`/api/issues/project/${id}`);
       console.log("Issue fetched successfully", response.data);
       dispatch({
-        type: actionTypes.FETCH_ISSUE_SUCCESS,
+        type: actionTypes.FETCH_ISSUES_SUCCESS,
         issues: response.data,
       });
     } catch (error) {
       dispatch({
-        type: actionTypes.FETCH_ISSUE_FAILURE,
+        type: actionTypes.FETCH_ISSUES_FAILURE,
         error: error.message,
       });
     }
@@ -93,6 +93,25 @@ export const assignedUserToIssue = ({ issueId, userId }) => {
       console.error("Error assigning user to issue:", error);
       dispatch({
         type: actionTypes.ASSIGNED_USER_TO_ISSUE_FAILURE,
+        error: error.message,
+      });
+    }
+  };
+};
+
+export const deleteIssue = (issueId) => {
+  return async (dispatch) => {
+    dispatch({ type: actionTypes.DELETE_ISSUE_REQUEST });
+    try {
+      await api.delete(`/api/issues/${issueId}`);
+      dispatch({
+        type: actionTypes.DELETE_ISSUE_SUCCESS,
+        payload: issueId,
+      });
+      console.log("Issue deleted successfully", issueId);
+    } catch (error) {
+      dispatch({
+        type: actionTypes.DELETE_ISSUE_FAILURE,
         error: error.message,
       });
     }

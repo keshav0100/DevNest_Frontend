@@ -7,9 +7,9 @@ const UserList = () => {
         <div className="border rounded-md">
           <p className="py-2 px-3">{"keshav" || "unassignee"}</p>
         </div>
-        {[1, 1, 1, 1].map((item) => (
+        {[1, 1, 1, 1].map((item, index) => (
           <div
-            key={item}
+            key={index}
             className="py-2 group hover:bg-slate-100 cursor-pointer flex items-center rounded-md border px-4"
           >
             <Avatar>

@@ -10,18 +10,26 @@ import {
 import { DotsVerticalIcon, PersonIcon } from "@radix-ui/react-icons";
 import UserList from "./UserList";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deleteIssue } from "@/Redux/Issue/Action";
+import axios from "axios";
 
-const IssueCard = () => {
+const IssueCard = ({ item, projectId }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
+  const handleIssueDelete = () => {
+    dispatch(deleteIssue(item.id));
+  }
   return (
     <Card className="rounded-md py-1 pb-2">
       <CardHeader className="py-0 pb-1">
         <div className="flex text-xs justify-between items-center">
           <CardTitle
-            onClick={() => navigate("/project/3/issue/2")}
+            onClick={() => navigate(`/project/${projectId}/issue/${item.id}`)}
             className="text-base font-extrabold cursor-pointer"
           >
-            Create Navbar
+            {item.title}
           </CardTitle>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -33,7 +41,7 @@ const IssueCard = () => {
               <DropdownMenuItem>In Progress</DropdownMenuItem>
               <DropdownMenuItem>Done</DropdownMenuItem>
               <DropdownMenuItem>Edit</DropdownMenuItem>
-              <DropdownMenuItem>Delete</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleIssueDelete}>Delete</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

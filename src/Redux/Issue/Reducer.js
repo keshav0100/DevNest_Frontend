@@ -1,4 +1,3 @@
-
 import * as actionTypes from "./ActionType";
 
 const initialState = {
@@ -10,7 +9,7 @@ const initialState = {
 
 const issueReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.FETCH_ISSUE_REQUEST:
+    case actionTypes.FETCH_ISSUES_REQUEST:
     case actionTypes.CREATE_ISSUE_REQUEST:
     case actionTypes.DELETE_ISSUE_REQUEST:
     case actionTypes.FETCH_ISSUE_BY_ID_REQUEST:
@@ -20,7 +19,7 @@ const issueReducer = (state = initialState, action) => {
         loading: true,
         error: null,
       };
-    case actionTypes.FETCH_ISSUE_SUCCESS:
+    case actionTypes.FETCH_ISSUES_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -50,9 +49,9 @@ const issueReducer = (state = initialState, action) => {
         return {
             ...state,
             loading: false,
-            issues: state.issues.filter(issue => issue.id !== action.issueId),
+            issues: state.issues.filter(issue => issue.id !== action.payload),
         };
-    case actionTypes.FETCH_ISSUE_FAILURE:
+    case actionTypes.FETCH_ISSUES_FAILURE:
     case actionTypes.CREATE_ISSUE_FAILURE:
     case actionTypes.DELETE_ISSUE_FAILURE:
     case actionTypes.ASSIGNED_ISSUE_TO_USER_FAILURE:
