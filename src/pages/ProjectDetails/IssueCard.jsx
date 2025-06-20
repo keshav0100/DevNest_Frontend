@@ -12,12 +12,12 @@ import UserList from "./UserList";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteIssue } from "@/Redux/Issue/Action";
-import axios from "axios";
+
 
 const IssueCard = ({ item, projectId }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const handleIssueDelete = () => {
     dispatch(deleteIssue(item.id));
   }

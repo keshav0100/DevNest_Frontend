@@ -15,8 +15,8 @@ import { useDispatch } from "react-redux";
 import { createIssue } from "@/Redux/Issue/Action";
 import { useParams } from "react-router-dom";
 
-const IssueForm = () => {
-  const {id} = useParams();
+const IssueForm = ({ status }) => {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const form = useForm({
     // resolver: zodResolver(formSchema),
@@ -26,7 +26,7 @@ const IssueForm = () => {
     },
   });
 
-  function onSubmit(data) {
+  const onSubmit=(data) =>{
     data.projectId = id;
 
     dispatch(
@@ -34,6 +34,7 @@ const IssueForm = () => {
         title: data.issueName,
         description: data.description,
         projectId: id,
+        status,
       })
     );
     console.log("Create issue data", data);

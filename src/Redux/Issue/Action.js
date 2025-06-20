@@ -1,15 +1,16 @@
 import * as actionTypes from "./ActionType";
 import api from "@/config/api";
 
-export const fetchIssue = (id) => {
+export const fetchIssue = (projectId) => {
   return async (dispatch) => {
     dispatch({ type: actionTypes.FETCH_ISSUES_REQUEST });
     try {
-      const response = await api.get(`/api/issues/project/${id}`);
-      console.log("Issue fetched successfully", response.data);
+      // Fetch the project, which contains the issues array
+      const response = await api.get(`/api/projects/${projectId}`);
+      const issues = response.data.issues || []; // Extract issues array
       dispatch({
         type: actionTypes.FETCH_ISSUES_SUCCESS,
-        issues: response.data,
+        issues,
       });
     } catch (error) {
       dispatch({

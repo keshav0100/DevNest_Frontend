@@ -1,13 +1,15 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { useSelector } from "react-redux";
 
 const UserList = () => {
+  const {project}=useSelector(store=>store);
   return (
     <>
       <div className="space-y-2">
         <div className="border rounded-md">
           <p className="py-2 px-3">{"keshav" || "unassignee"}</p>
         </div>
-        {[1, 1, 1, 1].map((item, index) => (
+        {project.projectDetails?.team.map((item, index) => (
           <div
             key={index}
             className="py-2 group hover:bg-slate-100 cursor-pointer flex items-center rounded-md border px-4"

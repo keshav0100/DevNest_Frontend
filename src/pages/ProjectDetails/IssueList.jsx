@@ -21,10 +21,11 @@ import { useEffect } from "react";
 import { fetchIssue } from "@/Redux/Issue/Action";
 import { useParams } from "react-router-dom";
 
+
 const IssueList = ({ title, status }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { issue } = useSelector((store) => store);
+  const { issue } = useSelector(store => store);
   useEffect(() => {
     dispatch(fetchIssue(id));
   }, [id]);
@@ -37,7 +38,7 @@ const IssueList = ({ title, status }) => {
           </CardHeader>
           <CardContent>
             <div className="space-y-1">
-              {issue.issues.map((item) => (
+              {issue.issues.filter((issue=>issue.status==status)).map((item) => (
                 <IssueCard key={item.id} projectId={id} item={item} />
               ))}
             </div>
@@ -58,7 +59,7 @@ const IssueList = ({ title, status }) => {
           <DialogHeader>
             <DialogTitle>Create New Issue</DialogTitle>
           </DialogHeader>
-          <IssueForm />
+          <IssueForm status={status}/>
         </DialogContent>
       </Dialog>
     </div>
