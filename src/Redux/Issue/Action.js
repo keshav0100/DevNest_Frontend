@@ -80,20 +80,18 @@ export const updateIssueStatus = ({ id, status }) => {
 
 export const assignedUserToIssue = ({ issueId, userId }) => {
   return async (dispatch) => {
-    dispatch({ type: actionTypes.ASSIGNED_USER_TO_ISSUE_REQUEST });
+    dispatch({ type: actionTypes.ASSIGNED_ISSUE_TO_USER_REQUEST });
     try {
       const response = await api.put(
         `/api/issues/${issueId}/assignee/${userId}`
       );
-      console.log("User assigned to issue successfully", response.data);
       dispatch({
-        type: actionTypes.ASSIGNED_USER_TO_ISSUE_SUCCESS,
-        issues: response.data,
+        type: actionTypes.ASSIGNED_ISSUE_TO_USER_SUCCESS,
+        issue: response.data,
       });
     } catch (error) {
-      console.error("Error assigning user to issue:", error);
       dispatch({
-        type: actionTypes.ASSIGNED_USER_TO_ISSUE_FAILURE,
+        type: actionTypes.ASSIGNED_ISSUE_TO_USER_FAILURE,
         error: error.message,
       });
     }

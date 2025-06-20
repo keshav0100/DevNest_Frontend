@@ -96,14 +96,17 @@ const IssueDetails = () => {
               <div className="space-y-7">
                 <div className="flex items-center gap-10 ">
                   <p className="w-[7rem] text-gray-800">Assignee</p>
-                  {issue.issueDetails?.assignee ? (
+                  {issue.issueDetails?.assignee?.fullName ? (
                     <div className="flex items-center gap-3">
                       <Avatar className="h-8 w-8 text-xs flex items-center justify-center bg-gray-200 rounded-full">
                         <AvatarFallback className="flex items-center justify-center text-gray-600 rounded-full">
-                          K
+                          {issue.issueDetails?.assignee?.fullName.charAt(0) ||
+                            "U"}
                         </AvatarFallback>
                       </Avatar>
-                      <p className="text-gray-800">Keshav Bansal</p>
+                      <p className="text-gray-800">
+                        {issue.issueDetails?.assignee?.fullName}
+                      </p>
                     </div>
                   ) : (
                     <p>Unassigneed</p>
