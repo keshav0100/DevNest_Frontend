@@ -15,11 +15,12 @@ import { Badge } from "@/components/ui/badge";
 import { useEffect } from "react";
 import { fetchIssueById, updateIssueStatus } from "@/Redux/Issue/Action";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchComments } from "@/Redux/Comment/Action";
 
 const IssueDetails = () => {
   const { projectId, issueId } = useParams();
   const dispatch = useDispatch();
-  const { issue } = useSelector((store) => store);
+  const { issue, comment } = useSelector((store) => store);
 
   const handleUpdateIssueStatus = (status) => {
     dispatch(updateIssueStatus({ status, id: issueId }));
@@ -27,6 +28,7 @@ const IssueDetails = () => {
   };
   useEffect(() => {
     dispatch(fetchIssueById(issueId));
+    dispatch(fetchComments(issueId));
   }, [issueId]);
   return (
     <div className="px-20 py-8 text-gray-400">
@@ -66,9 +68,10 @@ const IssueDetails = () => {
                     <CommentForm issueId={issueId} />
                   </div>
                   <div className="mt-8 space-y-6 text-gray-800">
-                    {[1, 1, 1, 1].map((item) => (
-                      <CommentCard key={item} />
-                    ))}
+                    {comment.comments.map((item) => {
+                      console.log(item); // See what properties are present
+                      return <CommentCard item={item} key={item.id} />;
+                    })}
                   </div>
                 </TabsContent>
                 <TabsContent value="history">

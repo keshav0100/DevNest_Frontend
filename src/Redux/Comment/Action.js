@@ -1,4 +1,4 @@
-import * as actionTypes from "./ActionTypes";
+import * as actionTypes from "./ActionType";
 import api from "@/config/api";
 
 export const createComment = (commentData) => {
@@ -60,4 +60,3 @@ export const fetchComments = (issueId) => {
     }
   };
 };
-

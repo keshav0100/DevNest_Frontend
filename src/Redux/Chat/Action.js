@@ -1,5 +1,5 @@
 import api from "@/config/api";
-import * as actionTypes from "./ActionTypes";
+import * as actionTypes from "./ActionType";
 
 export const sendMessage = (messageData) => {
   return async (dispatch) => {
@@ -10,6 +10,7 @@ export const sendMessage = (messageData) => {
         type: actionTypes.SEND_MESSAGE_SUCCESS,
         message: response.data,
       });
+      console.log("Message sent successfully:", response.data);
     } catch (error) {
       console.error("Error sending message:", error);
       dispatch({
