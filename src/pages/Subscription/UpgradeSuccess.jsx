@@ -54,6 +54,10 @@ const UpgradeSuccess = () => {
         endDate: formattedEndDate
       });
       
+      // Store the plan type in localStorage for the subscription page
+      localStorage.setItem("currentPlanType", planType);
+      console.log("Stored plan type in localStorage:", planType);
+      
       // Console logging for debugging
       console.log("=== Subscription Details ===");
       console.log("Plan Type:", planType);
@@ -72,17 +76,18 @@ const UpgradeSuccess = () => {
         </div>
         <div className="space-y-3 text-center">
           <div>
-            <p className="text-green-500 font-semibold">Subscription Start Date:</p>
-            <p className="text-gray-700">{subscriptionDates.startDate || "Loading..."}</p>
+            <p className="text-extrabold">Subscription Plan Type:</p>
+            <p className="text-gray-500 text-extrabold">{planType || "Loading..."}</p>
           </div>
           <div>
-            <p className="text-red-500 font-semibold">Subscription End Date:</p>
-            <p className="text-gray-700">{subscriptionDates.endDate || "Loading..."}</p>
+            <p className="text-green-500 text-extrabold">Subscription Start Date:</p>
+            <p className="text-gray-700 text-extrabold">{subscriptionDates.startDate || "Loading..."}</p>
           </div>
           <div>
-            <p className="font-semibold">Plan Type:</p>
-            <p className="text-blue-600 font-bold">{planType || "Loading..."}</p>
+            <p className="text-red-500 text-extrabold">Subscription End Date:</p>
+            <p className="text-gray-700 text-extrabold">{subscriptionDates.endDate || "Loading..."}</p>
           </div>
+          
         </div>
         <Button onClick={() => navigate("/")} className="font-extrabold">
           Go to Dashboard
