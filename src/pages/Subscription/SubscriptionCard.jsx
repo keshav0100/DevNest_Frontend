@@ -1,16 +1,24 @@
 import { Button } from "@/components/ui/button"
+import { createPayment } from "@/Redux/Payment/Action";
+import { useDispatch } from "react-redux"
 
 const SubscriptionCard = ({data}) => {
+  const dispatch=useDispatch();
+  const handleUpgrade=()=>{
+    dispatch(createPayment({
+      planType:data.planType,
+      jwt:localStorage.getItem("jwt"),
+      })
+    );
+  }
   return (
-    <div className='rounded-xl bg-[#e0d8d8] bg-opacity-20 shadown-[#14173b] shadow-2xl card p-5 space-y-5  w-[22rem]'>
-      <p className="text-xl font-extrabold">
-        {data.planName}
-      </p>
+    <div className="rounded-xl bg-[#e0d8d8] bg-opacity-20 shadown-[#14173b] shadow-2xl card p-5 space-y-5  w-[22rem]">
+      <p className="text-xl font-extrabold">{data.planName}</p>
       <p>
         <span className="text-xl text-extrabold">₹ {data.price} / </span>
         <span className="text-md text-extrabold">{data.planType}</span>
       </p>
-      {data.planType=="ANNUALLY"&&<p className="text-red-500">-30% off </p>}
+      {data.planType == "ANNUALLY" && <p className="text-red-500">-30% off </p>}
       <div className="space-y-3">
         {data.features.map((item, index) => (
           <div key={index} className="flex items-center gap-2">
@@ -19,11 +27,11 @@ const SubscriptionCard = ({data}) => {
           </div>
         ))}
       </div>
-      <Button className="font-extrabold w-full">
+      <Button onClick={handleUpgrade} className="font-extrabold w-full">
         {data.buttonName}
       </Button>
     </div>
-  )
+  );
 }
 
 export default SubscriptionCard

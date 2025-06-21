@@ -6,6 +6,9 @@ const initialState = {
     error: null,
 }
 const subscriptionReducer = (state = initialState, action) => {
+    console.log("Subscription Reducer Action:", action);
+    console.log("Subscription Current State:", state);
+    
     switch (action.type) {
         case types.GET_USER_SUBSCRIPTION_REQUEST:
         case types.UPGRADE_SUBSCRIPTION_REQUEST:
