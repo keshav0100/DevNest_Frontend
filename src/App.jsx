@@ -7,11 +7,11 @@ import { Route, Routes } from "react-router-dom";
 import Subscription from "./pages/Subscription/Subscription";
 import Auth from "./pages/Auth/Auth";
 import { useDispatch,useSelector } from "react-redux";
-// import {store} from "./Redux/Store"
 import { useEffect } from "react";
 import { getUser } from "./Redux/Auth/Action";
 import { fetchProjects } from "./Redux/Project/Action";
 import UpgradeSuccess from "./pages/Subscription/UpgradeSuccess";
+import AcceptInvitation from "./pages/Project/AcceptInvitation";
 
 function App() {
   const dispatch=useDispatch();
@@ -32,6 +32,7 @@ function App() {
         <Route path="/project/:projectId/issue/:issueId" element={<IssueDetails />}/>
         <Route path="/upgrade_plan" element={<Subscription />}/>
         <Route path="/upgrade_plan/success" element={<UpgradeSuccess />}/>
+        <Route path="/accept_invitation" element={<AcceptInvitation />}/>
       </Routes>
     </div>:<Auth/>}
     </>
