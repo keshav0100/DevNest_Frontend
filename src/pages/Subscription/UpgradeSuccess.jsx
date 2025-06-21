@@ -11,6 +11,7 @@ const UpgradeSuccess = () => {
   const dispatch = useDispatch();
   const { subscription } = useSelector(store => store);
   const queryParams = new URLSearchParams(location.search);
+
   const paymentId = queryParams.get("payment_id");
   const planType = queryParams.get("planType");
   
