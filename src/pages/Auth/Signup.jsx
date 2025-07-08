@@ -13,6 +13,8 @@ import { useForm } from "react-hook-form";
 import * as z from "zod"; 
 import { useDispatch } from "react-redux";
 import { register } from "@/Redux/Auth/Action";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -22,7 +24,9 @@ const formSchema = z.object({
 
 const Signup = () => {
   const dispatch=useDispatch();
-     const form = useForm({
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
@@ -31,9 +35,14 @@ const Signup = () => {
     },
   });
 
-  function onSubmit(data) {
-    dispatch(register(data));
-    console.log("Create project data", data);
+  async function onSubmit(data) {
+    setLoading(true);
+    try {
+      await dispatch(register(data));
+      console.log("Create project data", data);
+    } finally {
+      setLoading(false);
+    }
   }
   return (
     <div className="space-y-5">
@@ -53,7 +62,7 @@ const Signup = () => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Enter Full Name" {...field} className="font-extrabold"/>
+                <Input placeholder="Full Name" {...field} className="font-extrabold"/>
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -65,7 +74,7 @@ const Signup = () => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Enter your email" {...field} className="font-extrabold"/>
+                <Input placeholder="Email" {...field} className="font-extrabold"/>
               </FormControl>
               <FormMessage/>
             </FormItem>
@@ -77,7 +86,20 @@ const Signup = () => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input type="password" placeholder="Enter password" {...field} className="font-extrabold"/>
+                <div className="relative">
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Password"
+                    className="font-extrabold pr-10"
+                    {...field}
+                  />
+                  <span
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                    onClick={() => setShowPassword((prev) => !prev)}
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -85,8 +107,8 @@ const Signup = () => {
         />
         
         <div className="flex justify-center">
-          <Button type="submit" className="w-full items-center cursor-pointer font-extrabold">
-            Register
+          <Button type="submit" className="w-full items-center cursor-pointer font-extrabold" disabled={loading}>
+            {loading ? "Loading..." : "Register"}
           </Button>
         </div>
       </form>

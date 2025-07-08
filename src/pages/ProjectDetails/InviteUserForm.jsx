@@ -15,13 +15,9 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as z from "zod";
 
-
-
-const InviteUserForm =
-
- () => {
-  const dispatch=useDispatch();
-  const {id}=useParams();
+const InviteUserForm = () => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
   const form = useForm({
     // resolver: zodResolver(formSchema),
     defaultValues: {
@@ -29,10 +25,10 @@ const InviteUserForm =
     },
   });
 
-  const onSubmit=(data)=> {
-    dispatch(inviteToProject({email:data.email,projectId:id}))
-    console.log("Create project data", data);
-  }
+  const onSubmit = (data) => {
+    console.log("InviteUserForm - Sending:", { email: data.email, projectId: id });
+    dispatch(inviteToProject({ email: data.email, projectId: id }));
+  };
 
   return (
     <Form {...form}>

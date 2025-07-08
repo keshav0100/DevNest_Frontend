@@ -13,6 +13,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import * as z from "zod";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -21,6 +23,8 @@ const formSchema = z.object({
 
 const Login = () => {
   const dispatch=useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -29,10 +33,14 @@ const Login = () => {
     },
   });
 
-  function onSubmit(data) {
-    dispatch(login(data)) 
-    console.log("Login data:", data);
-    // TODO: Add API call for login
+  async function onSubmit(data) {
+    setLoading(true);
+    try {
+      await dispatch(login(data));
+      console.log("Login data:", data);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -48,7 +56,7 @@ const Login = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Enter your email" {...field} className="font-extrabold" />
+                  <Input placeholder="Email" {...field} className="font-extrabold" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -60,15 +68,28 @@ const Login = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type="password" placeholder="Enter your password" className="font-extrabold" {...field} />
+                  <div className="relative">
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Password"
+                      className="font-extrabold pr-10"
+                      {...field}
+                    />
+                    <span
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                    >
+                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </span>
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
           <div className="flex justify-center">
-            <Button type="submit" className="w-full items-center cursor-pointer font-extrabold">
-              Login
+            <Button type="submit" className="w-full items-center cursor-pointer font-extrabold" disabled={loading}>
+              {loading ? "Loading..." : "Login"}
             </Button>
           </div>
         </form>
