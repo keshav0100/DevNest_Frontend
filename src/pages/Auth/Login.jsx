@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import * as z from "zod";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import toast, { Toaster } from 'react-hot-toast';
 
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -36,8 +37,21 @@ const Login = () => {
   async function onSubmit(data) {
     setLoading(true);
     try {
-      await dispatch(login(data));
-      console.log("Login data:", data);
+      // Try login and check for jwt in response
+      const result = await dispatch(login(data));
+
+      const jwt = localStorage.getItem("jwt");
+      if (!jwt) {
+        toast.error('Invalid email or password', {
+          style: { background: '#f87171', color: 'white' },
+          position: 'top-right',
+        });
+      }
+    } catch (err) {
+      toast.error('Invalid email or password', {
+        style: { background: '#f87171', color: 'white' },
+        position: 'top-right',
+      });
     } finally {
       setLoading(false);
     }
@@ -45,7 +59,7 @@ const Login = () => {
 
   return (
     <div className="space-y-5">
-      
+      <Toaster position="top-right" toastOptions={{ style: { background: '#f87171', color: 'white' } }} />
       <h1 className="text-xl text-center font-extrabold text-brown-600">Keshav's DevNest</h1>
       <h1 className="text-3xl font-extrabold text-center">Login Here</h1>
       <Form {...form}>
