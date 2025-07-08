@@ -21,6 +21,7 @@ import { tags } from "../ProjectList/ProjectList";
 import { X } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { createProjects } from "@/Redux/Project/Action";
+import { Textarea } from "@/components/ui/textarea";
 
 const ProjectForm = () => {
   const dispatch=useDispatch();
@@ -73,10 +74,10 @@ const ProjectForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input
+                  <Textarea
                     {...field}
-                    type="text"
-                    className="border w-full border-gray-800 py-5 px-5 font-extrabold"
+                    rows={3}
+                    className="border w-full border-gray-800 py-3 px-5 font-extrabold resize-y min-h-[20px]"
                     placeholder="Project Description..."
                   />
                 </FormControl>
