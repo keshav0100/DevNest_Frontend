@@ -61,7 +61,7 @@ const Login = () => {
     <div className="space-y-5">
       <Toaster position="top-right" toastOptions={{ style: { background: '#f87171', color: 'white' } }} />
       <h1 className="text-xl text-center font-extrabold text-brown-600">Keshav's DevNest</h1>
-      <h1 className="text-3xl font-extrabold text-center">Login Here</h1>
+      <h1 className="text-3xl font-extrabold text-center">Login</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField

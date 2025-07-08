@@ -17,9 +17,23 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const formSchema = z.object({
-  fullName: z.string().max(10, "Name must be at most 10 characters"),
+  fullName: z.string()
+    .max(10, "Name must be at most 10 characters")
+    .refine(val => /^[A-Za-z ]+$/.test(val), {
+      message: "Kindly enter a valid name!",
+    }),
   email: z.string().email("Invalid email address"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  password: z.string()
+    .min(8, "Password must be at least 8 characters")
+    .refine(val => /[A-Z]/.test(val), {
+      message: "Password must contain at least one uppercase letter",
+    })
+    .refine(val => /[0-9]/.test(val), {
+      message: "Password must contain at least one number",
+    })
+    .refine(val => /[^A-Za-z0-9]/.test(val), {
+      message: "Password must contain at least one special character",
+    }),
 });
 
 const Signup = () => {
@@ -50,7 +64,7 @@ const Signup = () => {
         Keshav's DevNest
       </h1>
       <h1 className="text-3xl font-extrabold text-center">
-        Register Here
+        Register
       </h1>
        <div className="space-y-5">
 
