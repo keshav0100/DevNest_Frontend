@@ -4,7 +4,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -15,7 +14,7 @@ import { useDispatch } from "react-redux";
 import * as z from "zod";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -23,34 +22,32 @@ const formSchema = z.object({
 });
 
 const Login = () => {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+
   const form = useForm({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+    defaultValues: { email: "", password: "" },
   });
 
   async function onSubmit(data) {
     setLoading(true);
     try {
-      // Try login and check for jwt in response
-      const result = await dispatch(login(data));
-
+      await dispatch(login(data));
       const jwt = localStorage.getItem("jwt");
       if (!jwt) {
-        toast.error('Invalid email or password', {
-          style: { background: '#f87171', color: 'white' },
-          position: 'top-right',
+        toast.error("Invalid email or password", {
+          style: { background: "#f87171", color: "white" },
+          position: "top-right",
         });
+      } else {
+        toast.success("Logged in successfully!", { position: "top-right" });
       }
     } catch (err) {
-      toast.error('Invalid email or password', {
-        style: { background: '#f87171', color: 'white' },
-        position: 'top-right',
+      toast.error("Invalid email or password", {
+        style: { background: "#f87171", color: "white" },
+        position: "top-right",
       });
     } finally {
       setLoading(false);
@@ -59,9 +56,15 @@ const Login = () => {
 
   return (
     <div className="space-y-5">
-      <Toaster position="top-right" toastOptions={{ style: { background: '#f87171', color: 'white' } }} />
-      <h1 className="text-xl text-center font-extrabold text-brown-600">Keshav's DevNest</h1>
-      <h1 className="text-3xl font-extrabold text-center">Login</h1>
+      <Toaster
+        position="top-right"
+        toastOptions={{ style: { background: "#111827", color: "white" } }}
+      />
+
+      <h2 className="text-2xl font-extrabold text-center text-white drop-shadow">
+        Login Here
+      </h2>
+
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
@@ -70,12 +73,19 @@ const Login = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Email" {...field} className="font-extrabold" />
+                  <Input
+                    placeholder="Email"
+                    {...field}
+                    className="font-extrabold"
+                    autoComplete="email"
+                    inputMode="email"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="password"
@@ -88,24 +98,33 @@ const Login = () => {
                       placeholder="Password"
                       className="font-extrabold pr-10"
                       {...field}
+                      autoComplete="current-password"
                     />
-                    <span
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
-                      onClick={() => setShowPassword((prev) => !prev)}
+                    <button
+                      type="button"
+                      aria-label={
+                        showPassword ? "Hide password" : "Show password"
+                      }
+                      className="absolute right-3 top-1/2 -translate-y-1/2"
+                      onClick={() => setShowPassword((p) => !p)}
                     >
                       {showPassword ? <FaEyeSlash /> : <FaEye />}
-                    </span>
+                    </button>
                   </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <div className="flex justify-center">
-            <Button type="submit" className="w-full items-center cursor-pointer font-extrabold" disabled={loading}>
-              {loading ? "Loading..." : "Login"}
-            </Button>
-          </div>
+
+          {/* Brand-colored Login button */}
+          <Button
+            type="submit"
+            className="w-full font-extrabold bg-[#6C2BD9] hover:bg-[#5A23B8] text-white transition-all duration-200 shadow-lg"
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "Login"}
+          </Button>
         </form>
       </Form>
     </div>
